@@ -7,7 +7,7 @@
  * 		    Handles responding to simple words and phrases 
  * </li></ul>
  * This version uses a nested if to handle default responses.
- * @author Laurie White
+ * @author Laurie White, Robert DiMascio
  * @version April 2012
  */
 public class Magpie2
@@ -31,6 +31,7 @@ public class Magpie2
 	public String getResponse(String statement)
 	{
 		String response = "";
+        response = response.trim();
 		if (statement.indexOf("no") >= 0)
 		{
 			response = "Why so negative?";
@@ -42,6 +43,22 @@ public class Magpie2
 		{
 			response = "Tell me more about your family.";
 		}
+        else if(statement.length() == 0 )
+        {
+            response = "Say something, please.";
+        }
+        else if(statement.indexOf("Airplane")>=0)
+        {
+            response ="They travel through the air";
+        }
+        else if(statement.indexOf("Car")>=0)
+        {
+            response ="They belong on roadways";
+        }
+        else if(statement.indexOf("Ship")>=0)
+        {
+            response ="They belong on water.";
+        }
 		else
 		{
 			response = getRandomResponse();
@@ -55,7 +72,7 @@ public class Magpie2
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -76,7 +93,14 @@ public class Magpie2
 		{
 			response = "You don't say.";
 		}
-
+        else if(whichResponse == 4 )
+        {
+            response ="That Awesome!";
+        }
+        else if(whichResponse == 5)
+        {
+            response ="I DON'T CARE";
+        }
 		return response;
 	}
 }
